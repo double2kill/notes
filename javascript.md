@@ -132,3 +132,49 @@ html5
 </form>
 ```
 然后可以写checkForm()函数，来对表单进行一些处理。返回true则发送submit
+
+jquery
+---
+
+非常喜欢的一句话。
+> jQuery的理念“Write Less, Do More“，让你写更少的代码，完成更多的工作！
+
+对于位于同一层级的节点，可以通过`next()`和`prev()`方法
+
+`append()`把DOM添加到最后，`prepend()`则把DOM添加到最前。
+
+另外注意，如果要添加的DOM节点已经存在于HTML文档中，它会首先从文档移除，然后再添加，也就是说，用`append()`，你可以移动一个DOM节点。如果要把新节点插入到指定位置，可以用`after()`或者`before()`方法。
+
+如果你遇到`$(function () {...})`的形式，牢记这是`document`对象的`ready`事件处理函数。
+
+在浏览器中，有些JavaScript代码只有在用户触发下才能执行，例如，`window.open()`函数，因为考虑了安全问题。
+
+扩展一节讲述如何封装函数操作jquery，感觉不错！！值得再看一遍
+
+underscore
+---
+
+underscore好好强大，改天一定要看看源码。。。
+
+* map/filter
+* every / some
+* max / min
+* groupBy  按组分类
+* shuffle / sample  洗牌和随机取一个样本
+* first / last
+* flatten  ` _.flatten([1, [2], [3, [[4], [5]]]]); // [1, 2, 3, 4, 5]`
+* zip / unzip
+* object  整合两个array变成object
+* range  快速生成一个序列
+* bind
+* partial
+* memoize
+* once
+* delay
+* keys / allKeys  返回object的所有key，不包括原型链 / 包括原型链
+* values  返回object的所有value，没有allValues。
+* mapObject  针对object的map版本
+* invert  调换key和value
+* extend / extendOwn  合并object，并且按照后进来的数值覆盖相同的key对应的value
+* clone “浅复制”
+* isEqual  比较内容是否相同
