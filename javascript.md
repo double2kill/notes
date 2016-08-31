@@ -73,3 +73,108 @@ d; // Wed Jun 24 2015 19:49:22 GMT+0800 (CST)
 2. `new RegExp('...')`
 
 `test()`方法可以检测是否满足条件。
+
+面向对象
+---
+
+看了这么多，你是不是想用面向对象来进行编程呢？那么请看。
+
+原型链的搜索方式。
+
+```
+对象：
+arr ----> Array.prototype ----> Object.prototype ----> null
+函数：
+foo ----> Function.prototype ----> Object.prototype ----> null
+```
+
+`new 普通函数`可以变成`构造函数`。按照约定，构造函数首字母应当大写，而普通函数首字母应当小写，这样，一些语法检查工具如jslint将可以帮你检测到漏写的`new`
+
+如果我们是一个容易健忘的人，可以创建一个`createStudent()`函数来用于防止漏掉的new，如果创建的对象有很多属性，我们只需要传递需要的某些属性，剩下的属性可以用默认值，这样无需记忆相关参数的顺序。请看！
+
+```
+function Student(props) {
+    this.name = props.name || '匿名'; // 默认值为'匿名'
+    this.grade = props.grade || 1; // 默认值为1
+}
+
+Student.prototype.hello = function () {
+    alert('Hello, ' + this.name + '!');
+};//如果大家的hello方法都一样，那就不必在Student里面创建，用prototype可以节约内存。因为每个实例出来的方法长得一样，但是实际是不一样的。用原型链的知识可以很容易理解这个方法可以节省内存。
+
+function createStudent(props) {
+    return new Student(props || {})
+}//封装！！！
+```
+
+原型继承  这一节讲的很不错，虽然这是一个坑，但是考虑问题能够这么棒！也是很佩服，真心欣赏。
+
+浏览器
+---
+
+`window`对象有`innerWidth`和`innerHeight`属性，可以获取浏览器窗口的内部宽度和高度。内部宽高是指除去菜单栏、工具栏、边框等占位元素后，用于显示网页的净宽高。
+
+要加载一个新页面，可以调用`location.assign()`。如果要重新加载当前页面，调用`location.reload()`方法非常方便。
+
+为了确保安全，服务器端在设置Cookie时，应该始终坚持使用`httpOnly`。禁用javascript读取cookie。
+
+html5
+---
+
+`<input type="color" value="#ff0000">`可用于让用户选择颜色。
+
+充分利用`<input type="hidden">`来传递数据。用这个可以处理加密信息。
+
+```
+<form id="test-form" onsubmit="return checkForm()">
+    <input type="text" name="test">
+    <button type="submit">Submit</button>
+</form>
+```
+然后可以写checkForm()函数，来对表单进行一些处理。返回true则发送submit
+
+jquery
+---
+
+非常喜欢的一句话。
+> jQuery的理念“Write Less, Do More“，让你写更少的代码，完成更多的工作！
+
+对于位于同一层级的节点，可以通过`next()`和`prev()`方法
+
+`append()`把DOM添加到最后，`prepend()`则把DOM添加到最前。
+
+另外注意，如果要添加的DOM节点已经存在于HTML文档中，它会首先从文档移除，然后再添加，也就是说，用`append()`，你可以移动一个DOM节点。如果要把新节点插入到指定位置，可以用`after()`或者`before()`方法。
+
+如果你遇到`$(function () {...})`的形式，牢记这是`document`对象的`ready`事件处理函数。
+
+在浏览器中，有些JavaScript代码只有在用户触发下才能执行，例如，`window.open()`函数，因为考虑了安全问题。
+
+扩展一节讲述如何封装函数操作jquery，感觉不错！！值得再看一遍
+
+underscore
+---
+
+underscore好好强大，改天一定要看看源码。。。
+
+* map/filter
+* every / some
+* max / min
+* groupBy  按组分类
+* shuffle / sample  洗牌和随机取一个样本
+* first / last
+* flatten  ` _.flatten([1, [2], [3, [[4], [5]]]]); // [1, 2, 3, 4, 5]`
+* zip / unzip
+* object  整合两个array变成object
+* range  快速生成一个序列
+* bind
+* partial
+* memoize
+* once
+* delay
+* keys / allKeys  返回object的所有key，不包括原型链 / 包括原型链
+* values  返回object的所有value，没有allValues。
+* mapObject  针对object的map版本
+* invert  调换key和value
+* extend / extendOwn  合并object，并且按照后进来的数值覆盖相同的key对应的value
+* clone “浅复制”
+* isEqual  比较内容是否相同
